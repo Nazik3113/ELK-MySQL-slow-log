@@ -1,0 +1,16 @@
+filebeat.config.modules:
+  path: /etc/filebeat/modules.d/*.yml
+filebeat.inputs:
+  - type: filestream
+    id: hsa1016-mariadb-slow-log
+    paths:
+      - /var/log/mysql/mariadb-slow.log
+    parsers:
+      - multiline:
+          type: pattern
+          pattern: '^# User@Host'
+          negate: true
+          match: after
+output.logstash:
+  hosts:
+    - 'hsa1016-logstash:5044'

@@ -1,0 +1,4 @@
+- pipeline.id: hsa1016-mariadb-slow-log
+  path.config: "/usr/share/logstash/pipeline/slow-log.conf"
+  pipeline.workers: 2
+  queue.type: persisted
